@@ -113,7 +113,7 @@ const defaultMatchSuggestion = getChoiceText => (filter, suggestion) => {
 
     return isReactElement
         ? false
-        : suggestionText.match(
+        : suggestionText && suggestionText.match(
               // We must escape any RegExp reserved characters to avoid errors
               // For example, the filter might contains * which must be escaped as \*
               new RegExp(escapeRegExp(filter), 'i')
@@ -153,7 +153,8 @@ export const getSuggestionsFactory = ({
     getChoiceText,
     getChoiceValue,
     limitChoicesToValue = false,
-    matchSuggestion = defaultMatchSuggestion(getChoiceText),
+    matchSuggestion = 
+    (getChoiceText),
     selectedItem,
     suggestionLimit = 0,
 }) => filter => {
